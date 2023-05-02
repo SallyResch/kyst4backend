@@ -1,7 +1,7 @@
 package com.sillysally.kyst4backend.service;
 
 import com.sillysally.kyst4backend.repository.UserRepository;
-import com.sillysally.kyst4backend.user.UserModel;
+import com.sillysally.kyst4backend.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

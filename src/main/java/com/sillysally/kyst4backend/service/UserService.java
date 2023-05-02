@@ -1,5 +1,5 @@
 package com.sillysally.kyst4backend.service;
-import com.sillysally.kyst4backend.user.UserModel;
+import com.sillysally.kyst4backend.models.UserModel;
 import java.util.List;
 
 

@@ -1,4 +1,4 @@
-package com.sillysally.kyst4backend.user;
+package com.sillysally.kyst4backend.models;
 
 
 import jakarta.persistence.*;

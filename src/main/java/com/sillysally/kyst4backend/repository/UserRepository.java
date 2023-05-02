@@ -1,6 +1,6 @@
 package com.sillysally.kyst4backend.repository;
 
-import com.sillysally.kyst4backend.user.UserModel;
+import com.sillysally.kyst4backend.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
