@@ -6,16 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)*/
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
 
     @PostMapping("/save")
     public String saveUser(@RequestBody UserModel user){
-        userService.saveUserModel(user);
+        userService.saveUser(user);
         return "New user is added";
     }
 
