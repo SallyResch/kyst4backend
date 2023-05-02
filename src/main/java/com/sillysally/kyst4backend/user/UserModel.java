@@ -1,10 +1,7 @@
 package com.sillysally.kyst4backend.user;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class UserModel{
@@ -14,10 +11,11 @@ public class UserModel{
     private Long id;
 
     private String email;
-    private String password;
     private String username;
+    private String password;
 
     public UserModel() {
+
     }
 
     public Long getId() {
