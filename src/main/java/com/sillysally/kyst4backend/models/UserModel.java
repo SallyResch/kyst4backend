@@ -32,32 +32,35 @@ public class UserModel implements UserDetails {
     public UserModel() {
 
     }
+//Setters
 
     public UserModel setId(Long id) {
         this.id = id;
         return this;
     }
-    public Long getId() {
-        return id;
-    }
-
     public UserModel setEmail(String email) {
         this.email = email;
         return this;
-    }
-    public String getEmail() {
-        return email;
     }
     public UserModel setPassword(String password) {
         this.password = password;
         return this;
     }
-    public String getPassword() {
-        return password;
-    }
     public UserModel setUsername(String username) {
         this.username = username;
         return this;
+    }
+    //Getters
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
     public String getUsername() {
         return username;
