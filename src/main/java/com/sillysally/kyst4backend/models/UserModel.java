@@ -3,8 +3,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class UserModel implements UserDetails {
@@ -66,10 +68,16 @@ public class UserModel implements UserDetails {
         return username;
     }
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<SimpleGrantedAuthority> authorities;
+
+    public void setAuthorities(Set<SimpleGrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
