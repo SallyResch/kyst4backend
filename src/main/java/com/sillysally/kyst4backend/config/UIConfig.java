@@ -15,14 +15,11 @@ public class UIConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
     }
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/admin").setViewName("adminPage");
-        registry.addViewController("/").setViewName("homePage");
-        registry.addViewController("/login").setViewName("loginPage");
-        registry.addViewController("/logout").setViewName("logoutPage");
-        registry.addViewController("/user").setViewName("userPage");
-        registry.addViewController("/update").setViewName("updatePage");
-        registry.addViewController("/register").setViewName("registerPage");
+        registry.addViewController("/").setViewName("index");
+
+
     }
 }

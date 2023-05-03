@@ -1,12 +1,13 @@
 package com.sillysally.kyst4backend.config;
 
-import com.sillysally.kyst4backend.service.UserService;
+import com.sillysally.kyst4backend.service.UserModelService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,11 +16,11 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final PasswordConfig bcrypt;
-    private final UserService userService;
+    private final UserModelService userModelService;
 
-    public SecurityConfig(PasswordConfig bcrypt, UserService userService) {
+    public SecurityConfig(PasswordConfig bcrypt, UserModelService userModelService) {
         this.bcrypt = bcrypt;
-        this.userService = userService;
+        this.userModelService = userModelService;
     }
 
     @Bean
@@ -27,9 +28,7 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests(requests -> {
                     requests
-                            .requestMatchers("/", "/start").permitAll()
-                            .requestMatchers("/admin").hasRole("ADMIN")
-                            .requestMatchers("user").hasRole("USER")
+                            .requestMatchers("/", "/signUpPage").permitAll()
                             .anyRequest()
                             .authenticated();
                 }).formLogin();
@@ -39,9 +38,8 @@ public class SecurityConfig {
     //Our implementation instead of the original
     public DaoAuthenticationProvider authenticationOverride(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userService);
+        provider.setUserDetailsService((UserDetailsService) userModelService);
         provider.setPasswordEncoder(bcrypt.bCryptEncoder());
-
         return provider;
     }
 }
