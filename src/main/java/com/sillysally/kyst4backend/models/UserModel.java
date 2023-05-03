@@ -24,6 +24,11 @@ public class UserModel implements UserDetails {
     @Size(min=6, max=200)
     private String password;
 
+    private boolean isAccountNonExpired;
+    private boolean isAccountNonLocked;
+    private boolean isCredentialsNonExpired;
+    private boolean isEnabled;
+
     public UserModel() {
 
     }
@@ -58,6 +63,7 @@ public class UserModel implements UserDetails {
         return username;
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -65,21 +71,35 @@ public class UserModel implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return isAccountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return isAccountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return isCredentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return isEnabled;
+    }
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isAccountNonExpired=" + isAccountNonExpired +
+                ", isAccountNonLocked=" + isAccountNonLocked +
+                ", isCredentialsNonExpired=" + isCredentialsNonExpired +
+                ", isEnabled=" + isEnabled +
+                '}';
     }
 }
