@@ -2,16 +2,15 @@ package com.sillysally.kyst4backend.controller;
 
 import com.sillysally.kyst4backend.service.UserModelService;
 import com.sillysally.kyst4backend.models.UserModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-@CrossOrigin
+
+@CrossOrigin(origins = "http://localhost:3000/", maxAge=3600)
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
 
-    @Autowired
+
     private UserModelService userModelService;
 
     @PostMapping("/save")

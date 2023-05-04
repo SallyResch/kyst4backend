@@ -1,5 +1,6 @@
 package com.sillysally.kyst4backend.models;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ public class UserModel implements UserDetails {
     private Long id;
 
     @NotEmpty
+    @Email
     private String email;
 
     @NotEmpty
@@ -34,7 +36,26 @@ public class UserModel implements UserDetails {
     public UserModel() {
 
     }
-//Setters
+
+    public UserModel(String email,
+                     String username,
+                     String password,
+                     boolean isAccountNonExpired,
+                     boolean isAccountNonLocked,
+                     boolean isCredentialsNonExpired,
+                     boolean isEnabled,
+                     Set<SimpleGrantedAuthority> authorities) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.isAccountNonExpired = isAccountNonExpired;
+        this.isAccountNonLocked = isAccountNonLocked;
+        this.isCredentialsNonExpired = isCredentialsNonExpired;
+        this.isEnabled = isEnabled;
+        this.authorities = authorities;
+    }
+
+    //Setters
 
     public UserModel setId(Long id) {
         this.id = id;

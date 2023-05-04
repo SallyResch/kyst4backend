@@ -26,18 +26,21 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests( requests -> requests
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated()
                 )
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
                 .and()
                 .authenticationProvider(authenticationOverride());
         http.cors().configurationSource(request -> {
             CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+            corsConfiguration.addAllowedMethod("DELETE");
+            corsConfiguration.addAllowedMethod("POST");
+            corsConfiguration.addAllowedMethod("GET");
+            corsConfiguration.addAllowedMethod("OPTIONS");
+            corsConfiguration.addAllowedMethod("PUT");
             return corsConfiguration;
         });
         return http.build();
